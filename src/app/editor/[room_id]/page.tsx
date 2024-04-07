@@ -1,4 +1,5 @@
 "use client";
+import EditorComponents from "@/app/components/editor-components";
 import UserAvatar from "@/app/components/user-avatar";
 import { EVENTS } from "@/app/lib/constant";
 import { initSocket } from "@/app/lib/socket";
@@ -16,7 +17,7 @@ type Props = {};
 
 function EditorPage({}: Props) {
   const socketRef = useRef<Socket | null>(null);
-  const codeRef = useRef(null);
+  const codeRef = useRef<string | null>(null);
   const location = usePathname();
   const searchParams = useSearchParams();
   const { room_id: roomId } = useParams();
@@ -105,13 +106,13 @@ function EditorPage({}: Props) {
           </button>
         </div>
         <div className="editorWrap">
-          {/* <Editor
+          <EditorComponents
             socketRef={socketRef}
             roomId={roomId}
             onCodeChange={(code) => {
               codeRef.current = code;
             }}
-          /> */}
+          />
         </div>
       </div>
     </div>
